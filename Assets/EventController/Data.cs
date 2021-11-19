@@ -9,11 +9,9 @@ namespace DefaultNamespace
     public class Data : ScriptableObject
     {
         [SerializeField] private string _mazeDataPath;
-        private string _playerDataPath;
-        private string _menuDataPath;
+        [SerializeField] private string _playerDataPath;
         private MazeData _mazeData;
         private PlayerData _playerData;
-        private MenuData _menuData;
 
         public MazeData MazeData
         {
@@ -40,21 +38,7 @@ namespace DefaultNamespace
                 return _playerData;
             }
         }
-
-        public MenuData MenuData
-        {
-            get
-            {
-                if (_menuData == null)
-                {
-                    _menuData = Load<MenuData>("Data/" + _playerDataPath);
-                }
-
-                return _menuData;
-            }
-        }
-
-
+        
         private T Load<T>(string resourcesPath) where T : Object =>
             Resources.Load<T>(Path.ChangeExtension(resourcesPath, null));
     }

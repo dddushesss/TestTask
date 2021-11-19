@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace DefaultNamespace
 {
@@ -6,5 +7,15 @@ namespace DefaultNamespace
     public class PlayerData : ScriptableObject
     {
         public GameObject playerPrefab;
+        [Serializable]
+        public struct SpawnCoordStruct
+        {
+            public int X;
+            public int Y;
+        }
+
+        public SpawnCoordStruct SpawnCoord;
+        public float offset;
+
     }
 }

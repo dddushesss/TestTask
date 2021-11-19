@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,14 +10,16 @@ namespace DefaultNamespace
     {
         public Action StartGameAction;
         private bool isGameStarted;
-        private MenuData _menuData;
+        private MenuView _menuView;
 
-        public MenuController( MenuData menuData)
+        public MenuController(MenuView menuBody)
         {
-            _menuData = menuData;
-            menuData.starGameButton.onClick.AddListener(StartGame);
-            menuData.exitButton.onClick.AddListener(Exit);
-            menuData.menuButton.onClick.AddListener(ShowMenu);
+            _menuView = menuBody;
+            
+            _menuView.StartButton.onClick.AddListener(StartGame);
+            _menuView.MenuButton.onClick.AddListener(ShowMenu);
+            _menuView.ExitButton.onClick.AddListener(Exit);
+            _menuView.MenuButton.gameObject.SetActive(false);
         }
 
         private void StartGame()
@@ -25,13 +28,14 @@ namespace DefaultNamespace
             {
                 StartGameAction();
                 isGameStarted = true;
-                _menuData.starGameButton.GetComponentInChildren<Text>().text = "Продолжить";
             }
             else
             {
                 Resume();
             }
-            _menuData.body.SetActive(false);
+
+            _menuView.pauseMenuBody.SetActive(false);
+            _menuView.MenuButton.gameObject.SetActive(true);
         }
 
         private void Resume()
@@ -42,7 +46,8 @@ namespace DefaultNamespace
         private void ShowMenu()
         {
             Time.timeScale = 0f;
-            _menuData.body.SetActive(true);
+            _menuView.pauseMenuBody.SetActive(true);
+            _menuView.MenuButton.gameObject.SetActive(false);
         }
 
         private void Exit()

@@ -4,12 +4,13 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private Data _data;
+    [SerializeField] private MenuView canvas;
     private Controllers _controllers;
         
     private void Start()
     {
         _controllers = new Controllers();
-        new GameInit(_controllers, _data);
+        new GameInit(_controllers, _data, canvas);
         _controllers?.Initialization();
     }
 

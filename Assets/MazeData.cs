@@ -13,7 +13,6 @@ namespace DefaultNamespace
         public float yOffset;
         public float xOffset;
         public float cellSize;
-        public NavMeshSurface _navMeshSurface;
-        
+
     }
 }
