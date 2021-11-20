@@ -5,8 +5,16 @@ using UnityEngine;
 
 public class TrapView : MonoBehaviour
 {
-    private void OnTriggerStay(Collider other)
+    public Action OnEnter;
+    public Action OnExit;
+   
+    private void OnTriggerExit(Collider other)
     {
-        throw new NotImplementedException();
+        OnExit.Invoke();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        OnEnter.Invoke();
     }
 }

@@ -10,4 +10,5 @@ public class MenuView : MonoBehaviour
     public Button MenuButton;
     public GameObject pauseMenuBody;
     public Button shieldButton;
+    public GameObject StateLable;
 }

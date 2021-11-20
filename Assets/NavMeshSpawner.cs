@@ -6,14 +6,19 @@ namespace DefaultNamespace
 {
     public class NavMeshSpawner
     {
-        
+        private GameObject _navMeshSurface;
+
+        public void Destroy()
+        {
+            Object.Destroy(_navMeshSurface);
+        }
         public void SpawnNavMeshSurface()
         {
-            GameObject navMeshSurface = new GameObject();
-            navMeshSurface.SetName("NavMeshSurface");
-            navMeshSurface.AddNavMeshSurface();
-            navMeshSurface.GetComponent<NavMeshSurface>().useGeometry = NavMeshCollectGeometry.RenderMeshes;
-            navMeshSurface.GetComponent<NavMeshSurface>().BuildNavMesh();   
+            _navMeshSurface = new GameObject();
+            _navMeshSurface.SetName("NavMeshSurface");
+            _navMeshSurface.AddNavMeshSurface();
+            _navMeshSurface.GetComponent<NavMeshSurface>().useGeometry = NavMeshCollectGeometry.RenderMeshes;
+            _navMeshSurface.GetComponent<NavMeshSurface>().BuildNavMesh();   
         }
         
     }

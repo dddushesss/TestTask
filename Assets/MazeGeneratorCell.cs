@@ -9,6 +9,7 @@
         public bool WallBottom;
         public bool Floor = true;
         public bool IsATrap = false;
+        public bool IsAFinish = false;
 
         public bool Visited;
         

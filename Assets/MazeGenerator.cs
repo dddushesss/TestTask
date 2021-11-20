@@ -21,7 +21,7 @@ public class MazeGenerator
         public int y;
     }
 
-    public MazeGeneratorCell[,] GenerateNewMaze(int width, int height, float trapPercent)
+    public MazeGeneratorCell[,] GenerateNewMaze(int width, int height, float trapPercent, MazeData.FinishPointSturct finishPoint)
     {
         _width = width;
         _height = height;
@@ -59,6 +59,8 @@ public class MazeGenerator
             .ForEach(trap =>
             maze[trap.x, trap.y].IsATrap = true
         );
+
+        maze[finishPoint.X, finishPoint.Y].IsAFinish = true;
 
         return maze;
     }

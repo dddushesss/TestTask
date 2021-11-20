@@ -22,3 +22,6 @@ MonoBehaviour:
   finishColor: {r: 0.13333334, g: 0.54509807, b: 0.13333334, a: 0}
   TrapPercent: 0.24
   trapColor: {r: 0.69803923, g: 0.13333334, b: 0.13333334, a: 0}
+  FinishPoint:
+    X: 21
+    Y: 8
