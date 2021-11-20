@@ -12,7 +12,8 @@ namespace DefaultNamespace
             GameObject navMeshSurface = new GameObject();
             navMeshSurface.SetName("NavMeshSurface");
             navMeshSurface.AddNavMeshSurface();
-            navMeshSurface.GetComponent<NavMeshSurface>().BuildNavMesh();
+            navMeshSurface.GetComponent<NavMeshSurface>().useGeometry = NavMeshCollectGeometry.RenderMeshes;
+            navMeshSurface.GetComponent<NavMeshSurface>().BuildNavMesh();   
         }
         
     }

@@ -11,11 +11,11 @@ namespace DefaultNamespace
         public Action StartGameAction;
         private bool isGameStarted;
         private MenuView _menuView;
-
-        public MenuController(MenuView menuBody)
+        private GameInit _gameInit;
+        public MenuController(MenuView menuBody, GameInit gameInit)
         {
             _menuView = menuBody;
-            
+            _gameInit = gameInit;
             _menuView.StartButton.onClick.AddListener(StartGame);
             _menuView.MenuButton.onClick.AddListener(ShowMenu);
             _menuView.ExitButton.onClick.AddListener(Exit);
@@ -27,7 +27,9 @@ namespace DefaultNamespace
             if (!isGameStarted)
             {
                 StartGameAction();
+                Time.timeScale = 1f;
                 isGameStarted = true;
+                _menuView.StartButton.GetComponentInChildren<Text>().text = "Продолжить";
             }
             else
             {

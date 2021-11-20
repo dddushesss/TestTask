@@ -11,9 +11,17 @@ namespace MVCExample
             var component = gameObject.GetOrAddComponent<NavMeshSurface>();
             return gameObject;
         } 
-        public static GameObject AddNavMeshAgent(this GameObject gameObject)
+        public static GameObject AddLineRenderer(this GameObject gameObject)
+        {
+            var component = gameObject.GetOrAddComponent<LineRenderer>();
+            return gameObject;
+        } 
+        
+        
+        public static GameObject AddNavMeshAgent(this GameObject gameObject, float speed)
         {
             var component = gameObject.GetOrAddComponent<NavMeshAgent>();
+            component.speed = speed;
             return gameObject;
         }
         public static GameObject SetName(this GameObject gameObject, string name)

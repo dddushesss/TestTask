@@ -1,12 +1,27 @@
+using System;
 using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using DefaultNamespace;
+using Random = UnityEngine.Random;
 
 public class MazeGenerator
 {
     private int _width;
     private int _height;
 
-    public MazeGeneratorCell[,] GenerateNewMaze(int width, int height)
+    private struct trap
+    {
+        public trap(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+
+        public int x;
+        public int y;
+    }
+
+    public MazeGeneratorCell[,] GenerateNewMaze(int width, int height, float trapPercent)
     {
         _width = width;
         _height = height;
@@ -17,13 +32,13 @@ public class MazeGenerator
             for (int y = 0; y < _height; y++)
             {
                 maze[x, y] = new MazeGeneratorCell()
-                    { 
-                        x = x, 
-                        y = y, 
-                        Visited = false, 
-                        WallBottom = true, 
-                        WallLeft = true 
-                    };
+                {
+                    x = x,
+                    y = y,
+                    Visited = false,
+                    WallBottom = true,
+                    WallLeft = true
+                };
             }
         }
 
@@ -31,16 +46,38 @@ public class MazeGenerator
         for (int x = 0; x < _width; x++)
         {
             maze[x, _height - 1].WallLeft = false;
+            maze[x, _height - 1].Floor = false;
         }
 
         for (int y = 0; y < _height; y++)
         {
             maze[_width - 1, y].WallBottom = false;
+            maze[_width - 1, y].Floor = false;
         }
 
-        
+        GenerateTraps((int)Math.Round(width * height * trapPercent))
+            .ForEach(trap =>
+            maze[trap.x, trap.y].IsATrap = true
+        );
 
         return maze;
+    }
+
+    private List<trap> GenerateTraps(int count)
+    {
+        List<trap> traps = new List<trap>();
+        for (int i = 0; i < count; i++)
+        {
+            trap trap;
+            do
+            {
+                trap = new trap(Random.Range(0, _width), Random.Range(0, _height));
+            } while (traps.Contains(trap) || (trap.x == 0 && trap.y == 0));
+
+            traps.Add(trap);
+        }
+
+        return traps;
     }
 
     private void RemoveWallsWithBacktracker(MazeGeneratorCell[,] maze)

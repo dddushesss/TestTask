@@ -13,6 +13,9 @@ namespace DefaultNamespace
         public float yOffset;
         public float xOffset;
         public float cellSize;
+        public Color finishColor;
+        [Range(0, 1)] public float TrapPercent;
+        public Color trapColor;
 
     }
 }

@@ -9,4 +9,5 @@ public class MenuView : MonoBehaviour
     public Button ExitButton;
     public Button MenuButton;
     public GameObject pauseMenuBody;
+    public Button shieldButton;
 }

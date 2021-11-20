@@ -10,8 +10,10 @@ namespace DefaultNamespace
     {
         [SerializeField] private string _mazeDataPath;
         [SerializeField] private string _playerDataPath;
+        [SerializeField] private string _cameraDataPath;
         private MazeData _mazeData;
         private PlayerData _playerData;
+        private CameraData _cameraData;
 
         public MazeData MazeData
         {
@@ -36,6 +38,18 @@ namespace DefaultNamespace
                 }
 
                 return _playerData;
+            }
+        }
+        public CameraData CameraData
+        {
+            get
+            {
+                if (_cameraData == null)
+                {
+                    _cameraData = Load<CameraData>("Data/" + _cameraDataPath);
+                }
+
+                return _cameraData;
             }
         }
         

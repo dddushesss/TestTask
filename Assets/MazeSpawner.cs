@@ -15,7 +15,7 @@ namespace DefaultNamespace
         public void SpawnMaze()
         {
             var generator = new MazeGenerator();
-            var maze = generator.GenerateNewMaze(_mazeData.mazeWidth, _mazeData.mazeHeight);
+            var maze = generator.GenerateNewMaze(_mazeData.mazeWidth, _mazeData.mazeHeight, _mazeData.TrapPercent);
             _mazeData.cellPrefab.transform.localScale = new Vector3(_mazeData.cellSize, 1, _mazeData.cellSize);
             for (int x = 0; x < maze.GetLength(0); x++)
             {
@@ -27,9 +27,15 @@ namespace DefaultNamespace
                         Quaternion.identity).GetComponent<CellView>();
                     cell.WallLeft.SetActive(maze[x, y].WallLeft);
                     cell.WallBottom.SetActive(maze[x, y].WallBottom);
-                    if (x == _mazeData.mazeWidth - 1 && y == 0)
+                    cell.Floor.SetActive(maze[x, y].Floor);
+                    cell.TrapTrigger.SetActive(maze[x,y].IsATrap);
+                    if (maze[x, y].IsATrap)
                     {
-                        cell.WallLeft.SetActive(false);
+                        cell.Floor.GetComponent<MeshRenderer>().material.color = _mazeData.trapColor;
+                    }
+                    if (x == _mazeData.mazeWidth - 2 && y == _mazeData.mazeHeight - 2)
+                    {
+                        cell.Floor.GetComponent<MeshRenderer>().material.color = _mazeData.finishColor;
                     }
                 }
             }

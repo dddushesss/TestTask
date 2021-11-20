@@ -26,6 +26,7 @@ public class PlayerSpawner
             new Vector3(playerData.SpawnCoord.X * _scale, playerData.offset, playerData.SpawnCoord.Y * _scale),
             Quaternion.identity);
         player.SetName("Player");
-        player.AddNavMeshAgent();
+        player.AddLineRenderer();
+        player.AddNavMeshAgent(playerData.speed);
     }
 }

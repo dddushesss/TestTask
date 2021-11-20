@@ -17,3 +17,8 @@ MonoBehaviour:
     X: 0
     Y: 0
   offset: 0
+  speed: 3.5
+  idleColor: {r: 1, g: 1, b: 0, a: 0}
+  defenceColor: {r: 0.6784314, g: 1, b: 0.18431373, a: 0}
+  pathColor: {r: 0, g: 0, b: 0, a: 0}
+  pathLineWidth: 0.5

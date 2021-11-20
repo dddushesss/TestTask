@@ -16,6 +16,11 @@ namespace DefaultNamespace
 
         public SpawnCoordStruct SpawnCoord;
         public float offset;
+        public float speed;
 
+        public Color idleColor;
+        public Color defenceColor;
+        public Color pathColor;
+        public float pathLineWidth;
     }
 }
